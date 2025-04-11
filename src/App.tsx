@@ -75,7 +75,11 @@ function Content() {
 const HeroScene = () => (
   <Canvas
     camera={{ position: [0, 0, 10] }}
-    style={{ width: "100%", height: "100%", pointerEvents: "none" }}
+    style={{
+      width: "100%",
+      height: "100%",
+      pointerEvents: "none",
+    }}
   >
     <pointLight color="indianred" />
     <pointLight position={[10, 10, -10]} color="orange" />
@@ -135,6 +139,66 @@ const ExperienceScene = () => (
       <meshStandardMaterial color={colors.accent2} wireframe />
     </mesh>
     <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={2.5} />
+  </Canvas>
+);
+
+const EducationScene = () => (
+  <Canvas
+    camera={{ position: [0, 0, 8] }}
+    style={{ width: "100%", height: "100%", pointerEvents: "none" }}
+  >
+    <ambientLight intensity={0.5} />
+    <pointLight position={[10, 10, 10]} />
+    <mesh scale={2.5}>
+      <torusGeometry args={[1, 0.3, 16, 100]} />
+      <meshStandardMaterial color={colors.accent2} wireframe />
+    </mesh>
+    <OrbitControls
+      enableZoom={false}
+      autoRotate
+      autoRotateSpeed={1.2}
+      enablePan={false}
+    />
+  </Canvas>
+);
+
+const CertificatesScene = () => (
+  <Canvas
+    camera={{ position: [0, 0, 8] }}
+    style={{ width: "100%", height: "100%", pointerEvents: "none" }}
+  >
+    <ambientLight intensity={0.5} />
+    <pointLight position={[10, 10, 10]} />
+    <mesh scale={2.5}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color={colors.accent3} wireframe />
+    </mesh>
+    <OrbitControls
+      enableZoom={false}
+      autoRotate
+      autoRotateSpeed={1.8}
+      enablePan={false}
+    />
+  </Canvas>
+);
+
+const AwardsScene = () => (
+  <Canvas
+    camera={{ position: [0, 0, 8] }}
+    style={{ width: "100%", height: "100%", pointerEvents: "none" }}
+  >
+    <ambientLight intensity={0.5} />
+    <pointLight position={[10, 10, 10]} />
+    <mesh scale={2.5}>
+      <coneGeometry args={[1, 2, 32]} />
+      <meshStandardMaterial color={colors.accent4} wireframe />
+    </mesh>
+    <OrbitControls
+      enableZoom={false}
+      autoRotate
+      autoRotateSpeed={2.2}
+      enablePan={false}
+    />
   </Canvas>
 );
 
@@ -509,6 +573,215 @@ function App() {
               </p>
               <p className="text-secondary" style={{ fontFamily: "monospace" }}>
                 {exp.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Education Section */}
+      <Section
+        title="Education"
+        id="education"
+        scene={<EducationScene />}
+        bgColor={`bg-gradient-to-br from-[${colors.background1}] to-[${colors.accent2}]/10`}
+        decoration="left"
+      >
+        <div className="space-y-8">
+          {[
+            {
+              degree: "Bachelor of Technology",
+              institution: "University Name",
+              period: "2018 - 2022",
+              details: "Computer Science and Engineering",
+              achievements: [
+                "Graduated with First Class Honors",
+                "Specialized in Web Development",
+                "Participated in multiple hackathons",
+              ],
+            },
+            {
+              degree: "Higher Secondary",
+              institution: "School Name",
+              period: "2016 - 2018",
+              details: "Science Stream",
+              achievements: [
+                "Scored 95% in final exams",
+                "Active member of Science Club",
+              ],
+            },
+          ].map((edu) => (
+            <motion.div
+              key={edu.degree}
+              className="p-6 rounded-lg bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow"
+              whileHover={{ scale: 1.02 }}
+            >
+              <h3
+                className="text-xl font-bold mb-2 text-secondary"
+                style={{ fontFamily: "monospace" }}
+              >
+                {edu.degree}
+              </h3>
+              <p
+                className="text-lg font-medium text-secondary"
+                style={{ fontFamily: "monospace" }}
+              >
+                {edu.institution}
+              </p>
+              <p
+                className="text-secondary/80 mb-2"
+                style={{ fontFamily: "monospace" }}
+              >
+                {edu.period}
+              </p>
+              <p
+                className="text-secondary mb-2"
+                style={{ fontFamily: "monospace" }}
+              >
+                {edu.details}
+              </p>
+              <ul
+                className="list-disc list-inside text-secondary"
+                style={{ fontFamily: "monospace" }}
+              >
+                {edu.achievements.map((achievement, index) => (
+                  <li key={index}>{achievement}</li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Course Certificates Section */}
+      <Section
+        title="Course Certificates"
+        id="certificates"
+        scene={<CertificatesScene />}
+        bgColor={`bg-gradient-to-bl from-[${colors.background2}] to-[${colors.accent3}]/10`}
+        decoration="right"
+      >
+        <div className="grid md:grid-cols-2 gap-8">
+          {[
+            {
+              title: "Advanced React Development",
+              issuer: "Platform Name",
+              date: "2023",
+              skills: [
+                "React Hooks",
+                "Context API",
+                "Performance Optimization",
+              ],
+            },
+            {
+              title: "Three.js Mastery",
+              issuer: "Platform Name",
+              date: "2023",
+              skills: ["3D Graphics", "WebGL", "Animation"],
+            },
+            {
+              title: "TypeScript Fundamentals",
+              issuer: "Platform Name",
+              date: "2022",
+              skills: ["Type System", "Generics", "Advanced Types"],
+            },
+            {
+              title: "Web Performance Optimization",
+              issuer: "Platform Name",
+              date: "2022",
+              skills: ["Lighthouse", "Core Web Vitals", "Caching"],
+            },
+          ].map((cert) => (
+            <motion.div
+              key={cert.title}
+              className="p-6 rounded-lg bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow"
+              whileHover={{ scale: 1.02 }}
+            >
+              <h3
+                className="text-xl font-bold mb-2 text-secondary"
+                style={{ fontFamily: "monospace" }}
+              >
+                {cert.title}
+              </h3>
+              <p
+                className="text-secondary/80 mb-2"
+                style={{ fontFamily: "monospace" }}
+              >
+                {cert.issuer} • {cert.date}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {cert.skills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 rounded-full bg-accent/10 text-accent text-sm"
+                    style={{ fontFamily: "monospace" }}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Awards & Achievements Section */}
+      <Section
+        title="Awards & Achievements"
+        id="awards"
+        scene={<AwardsScene />}
+        bgColor={`bg-gradient-to-tr from-[${colors.background3}] to-[${colors.accent4}]/10`}
+        decoration="center"
+      >
+        <div className="space-y-8">
+          {[
+            {
+              title: "Best Project Award",
+              organization: "Tech Conference 2023",
+              date: "2023",
+              description:
+                "Awarded for developing an innovative web application using Three.js and React",
+            },
+            {
+              title: "Hackathon Winner",
+              organization: "CodeFest 2022",
+              date: "2022",
+              description:
+                "First place in a 48-hour hackathon for creating a real-time collaboration tool",
+            },
+            {
+              title: "Outstanding Student",
+              organization: "University Name",
+              date: "2021",
+              description:
+                "Recognized for academic excellence and contributions to the developer community",
+            },
+          ].map((award) => (
+            <motion.div
+              key={award.title}
+              className="p-6 rounded-lg bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow"
+              whileHover={{ scale: 1.02 }}
+            >
+              <h3
+                className="text-xl font-bold mb-2 text-secondary"
+                style={{ fontFamily: "monospace" }}
+              >
+                {award.title}
+              </h3>
+              <p
+                className="text-lg font-medium text-secondary"
+                style={{ fontFamily: "monospace" }}
+              >
+                {award.organization}
+              </p>
+              <p
+                className="text-secondary/80 mb-2"
+                style={{ fontFamily: "monospace" }}
+              >
+                {award.date}
+              </p>
+              <p className="text-secondary" style={{ fontFamily: "monospace" }}>
+                {award.description}
               </p>
             </motion.div>
           ))}
