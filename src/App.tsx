@@ -8,7 +8,7 @@ import * as THREE from "three";
 // Import local font CSS
 import "./assets/fonts/fonts.css";
 
-// Update color scheme with attractive light colors
+// Update color scheme with vibrant colors
 const colors = {
   primary: "#ffffff", // Pure white
   secondary: "#1a1a1a", // Dark text
@@ -37,7 +37,7 @@ function Dodecahedron({ position, text = "Hello\nWorld" }: DodecahedronProps) {
       <dodecahedronGeometry args={[1.1, 0]} />
       <meshStandardMaterial
         roughness={0.75}
-        emissive="#404057"
+        emissive={colors.accent}
         color={colors.accent}
       />
       <Html distanceFactor={45}>
@@ -81,9 +81,9 @@ const HeroScene = () => (
       pointerEvents: "none",
     }}
   >
-    <pointLight color="indianred" />
-    <pointLight position={[10, 10, -10]} color="orange" />
-    <pointLight position={[-10, -10, 10]} color="lightblue" />
+    <pointLight color={colors.accent} />
+    <pointLight position={[10, 10, -10]} color={colors.accent5} />
+    <pointLight position={[-10, -10, 10]} color={colors.accent2} />
     <Content />
     <OrbitControls
       enableZoom={false}
@@ -97,7 +97,7 @@ const HeroScene = () => (
 const AboutScene = () => (
   <Canvas camera={{ position: [0, 0, 8] }}>
     <ambientLight intensity={0.5} />
-    <pointLight position={[10, 10, 10]} />
+    <pointLight position={[10, 10, 10]} color={colors.accent4} />
     <mesh scale={2.5}>
       <dodecahedronGeometry args={[1, 0]} />
       <meshStandardMaterial color={colors.accent4} wireframe />
@@ -109,7 +109,7 @@ const AboutScene = () => (
 const SkillsScene = () => (
   <Canvas camera={{ position: [0, 0, 8] }}>
     <ambientLight intensity={0.5} />
-    <pointLight position={[10, 10, 10]} />
+    <pointLight position={[10, 10, 10]} color={colors.accent5} />
     <mesh scale={2.5}>
       <icosahedronGeometry args={[1, 0]} />
       <meshStandardMaterial color={colors.accent5} wireframe />
@@ -121,7 +121,7 @@ const SkillsScene = () => (
 const ProjectsScene = () => (
   <Canvas camera={{ position: [0, 0, 8] }}>
     <ambientLight intensity={0.5} />
-    <pointLight position={[10, 10, 10]} />
+    <pointLight position={[10, 10, 10]} color={colors.accent} />
     <mesh scale={2.5}>
       <octahedronGeometry args={[1, 0]} />
       <meshStandardMaterial color={colors.accent} wireframe />
@@ -133,7 +133,7 @@ const ProjectsScene = () => (
 const ExperienceScene = () => (
   <Canvas camera={{ position: [0, 0, 8] }}>
     <ambientLight intensity={0.5} />
-    <pointLight position={[10, 10, 10]} />
+    <pointLight position={[10, 10, 10]} color={colors.accent2} />
     <mesh scale={2.5}>
       <tetrahedronGeometry args={[1, 0]} />
       <meshStandardMaterial color={colors.accent2} wireframe />
@@ -148,7 +148,7 @@ const EducationScene = () => (
     style={{ width: "100%", height: "100%", pointerEvents: "none" }}
   >
     <ambientLight intensity={0.5} />
-    <pointLight position={[10, 10, 10]} />
+    <pointLight position={[10, 10, 10]} color={colors.accent2} />
     <mesh scale={2.5}>
       <torusGeometry args={[1, 0.3, 16, 100]} />
       <meshStandardMaterial color={colors.accent2} wireframe />
@@ -168,7 +168,7 @@ const CertificatesScene = () => (
     style={{ width: "100%", height: "100%", pointerEvents: "none" }}
   >
     <ambientLight intensity={0.5} />
-    <pointLight position={[10, 10, 10]} />
+    <pointLight position={[10, 10, 10]} color={colors.accent3} />
     <mesh scale={2.5}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color={colors.accent3} wireframe />
@@ -188,7 +188,7 @@ const AwardsScene = () => (
     style={{ width: "100%", height: "100%", pointerEvents: "none" }}
   >
     <ambientLight intensity={0.5} />
-    <pointLight position={[10, 10, 10]} />
+    <pointLight position={[10, 10, 10]} color={colors.accent4} />
     <mesh scale={2.5}>
       <coneGeometry args={[1, 2, 32]} />
       <meshStandardMaterial color={colors.accent4} wireframe />
@@ -205,7 +205,7 @@ const AwardsScene = () => (
 const ContactScene = () => (
   <Canvas camera={{ position: [0, 0, 8] }}>
     <ambientLight intensity={0.5} />
-    <pointLight position={[10, 10, 10]} />
+    <pointLight position={[10, 10, 10]} color={colors.accent3} />
     <mesh scale={2.5}>
       <sphereGeometry args={[1, 32, 32]} />
       <meshStandardMaterial color={colors.accent3} wireframe />
@@ -292,7 +292,7 @@ const Section = ({
   decoration?: "left" | "right" | "center" | "none";
 }) => {
   const { ref, inView } = useInView({
-    threshold: 0.6,
+    threshold: 0.7,
     triggerOnce: false,
   });
 
@@ -300,7 +300,11 @@ const Section = ({
     if (inView) {
       const element = document.getElementById(id);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "center" });
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "center",
+        });
       }
     }
   }, [inView, id]);
