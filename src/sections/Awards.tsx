@@ -10,7 +10,8 @@ const AwardsSection = () => {
       id="awards"
       scene={<AwardsScene />}
       bgColor={`bg-gradient-to-tr from-[${colors.background3}] to-[${colors.accent4}]/10`}
-      decoration="center"
+      decoration="left"
+      disableScene
     >
       <div className="space-y-8">
         {[

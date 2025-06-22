@@ -11,6 +11,7 @@ const EducationSection = () => {
       scene={<EducationScene />}
       bgColor={`bg-gradient-to-br from-[${colors.background1}] to-[${colors.accent2}]/10`}
       decoration="left"
+      disableScene
     >
       <div className="space-y-8">
         {[

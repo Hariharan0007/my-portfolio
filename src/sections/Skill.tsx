@@ -122,6 +122,7 @@ const SkillSection = () => {
       bgColor={`bg-gradient-to-bl from-[${colors.background2}] to-[${colors.accent2}]/10`}
       decoration="right"
       fullWidth
+      disableScene
     >
       <div className="w-full overflow-hidden py-8">
         <div className="flex flex-col gap-20">

@@ -11,6 +11,7 @@ const CertificateSection = () => {
       scene={<CertificatesScene />}
       bgColor={`bg-gradient-to-bl from-[${colors.background2}] to-[${colors.accent3}]/10`}
       decoration="right"
+      disableScene
     >
       <div className="grid md:grid-cols-2 gap-8">
         {[

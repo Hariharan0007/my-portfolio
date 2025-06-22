@@ -10,6 +10,7 @@ type SectionProps = {
   bgColor?: string;
   decoration?: "left" | "right" | "center" | "none";
   fullWidth?: boolean;
+  disableScene?: boolean;
 };
 
 const Section = ({
@@ -20,6 +21,7 @@ const Section = ({
   bgColor = "bg-primary",
   decoration = "none",
   fullWidth = false,
+  disableScene = false,
 }: SectionProps) => {
   const { ref, inView } = useInView({
     threshold: 0.7,
@@ -72,7 +74,9 @@ const Section = ({
       transition={{ duration: 0.8 }}
     >
       {getDecoration()}
-      <div className="absolute inset-0 z-0 opacity-30">{scene}</div>
+      {!disableScene && (
+        <div className="absolute inset-0 z-0 opacity-30">{scene}</div>
+      )}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

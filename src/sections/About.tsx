@@ -10,6 +10,7 @@ const AboutSection = () => {
       scene={<AboutScene />}
       bgColor={`bg-gradient-to-br from-[${colors.background3}] to-[${colors.accent}]/10`}
       decoration="left"
+      disableScene
     >
       <div className="space-y-4">
         <p

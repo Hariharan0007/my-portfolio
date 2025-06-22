@@ -11,6 +11,7 @@ const ContactSection = () => {
       scene={<ContactScene />}
       bgColor={`bg-gradient-to-b from-[${colors.background1}] to-[${colors.accent5}]/10`}
       decoration="right"
+      disableScene
     >
       <div className="space-y-6">
         <p

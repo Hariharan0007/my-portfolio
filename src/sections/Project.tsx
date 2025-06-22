@@ -10,7 +10,8 @@ const ProjectSection = () => {
       id="projects"
       scene={<ProjectsScene />}
       bgColor={`bg-gradient-to-tr from-[${colors.background4}] to-[${colors.accent3}]/10`}
-      decoration="center"
+      decoration="right"
+      disableScene
     >
       <div className="grid md:grid-cols-2 gap-8">
         {[

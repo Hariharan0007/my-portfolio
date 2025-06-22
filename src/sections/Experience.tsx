@@ -11,6 +11,7 @@ const ExperienceSection = () => {
       scene={<ExperienceScene />}
       bgColor={`bg-gradient-to-tl from-[${colors.background5}] to-[${colors.accent4}]/10`}
       decoration="left"
+      disableScene
     >
       <div className="space-y-8">
         {[
