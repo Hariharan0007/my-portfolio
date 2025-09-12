@@ -25,36 +25,36 @@ const CyberpunkGrid: React.FC<CyberpunkGridProps> = ({ className = "" }) => {
     const drawGrid = () => {
       if (!ctx) return;
 
-      const gridSize = 500; // Small gaps between grid lines
+      const gridSize = 60; // Increased gaps between grid lines
       const width = canvas.width;
       const height = canvas.height;
 
       // Clear canvas
       ctx.clearRect(0, 0, width, height);
 
-      // Create gradient for the grid lines with blue cyberpunk theme
+      // Create gradient for the grid lines with white gradient animation
       const gradient = ctx.createLinearGradient(0, 0, 0, height);
-      gradient.addColorStop(0, colors.cyberpunk_grid);
-      gradient.addColorStop(0.2, colors.cyberpunk_silver);
-      gradient.addColorStop(0.4, colors.cyberpunk_light_blue);
-      gradient.addColorStop(0.6, colors.cyberpunk_cyan);
-      gradient.addColorStop(0.8, colors.cyberpunk_electric);
-      gradient.addColorStop(1, colors.cyberpunk_accent);
+      gradient.addColorStop(0, "#ffffff");
+      gradient.addColorStop(0.2, "#e6f3ff");
+      gradient.addColorStop(0.4, "#b3d9ff");
+      gradient.addColorStop(0.6, "#80c7ff");
+      gradient.addColorStop(0.8, "#4db3ff");
+      gradient.addColorStop(1, "#1a9fff");
 
       // Apply gradient offset for animation
-      const gradientOffset = (gradientPosition.current * 0.005) % 1;
+      const gradientOffset = (gradientPosition.current * 0.003) % 1;
       const animatedGradient = ctx.createLinearGradient(
         0,
         gradientOffset * height,
         0,
         height + gradientOffset * height
       );
-      animatedGradient.addColorStop(0, colors.cyberpunk_grid);
-      animatedGradient.addColorStop(0.2, colors.cyberpunk_silver);
-      animatedGradient.addColorStop(0.4, colors.cyberpunk_light_blue);
-      animatedGradient.addColorStop(0.6, colors.cyberpunk_cyan);
-      animatedGradient.addColorStop(0.8, colors.cyberpunk_electric);
-      animatedGradient.addColorStop(1, colors.cyberpunk_accent);
+      animatedGradient.addColorStop(0, "#ffffff");
+      animatedGradient.addColorStop(0.2, "#e6f3ff");
+      animatedGradient.addColorStop(0.4, "#b3d9ff");
+      animatedGradient.addColorStop(0.6, "#80c7ff");
+      animatedGradient.addColorStop(0.8, "#4db3ff");
+      animatedGradient.addColorStop(1, "#1a9fff");
 
       ctx.strokeStyle = animatedGradient;
       ctx.lineWidth = 0.5;
@@ -77,9 +77,9 @@ const CyberpunkGrid: React.FC<CyberpunkGridProps> = ({ className = "" }) => {
       }
 
       // Add enhanced glowing effect to the grid
-      ctx.shadowColor = colors.cyberpunk_glow;
-      ctx.shadowBlur = 3;
-      ctx.globalAlpha = 0.4;
+      ctx.shadowColor = "#ffffff";
+      ctx.shadowBlur = 4;
+      ctx.globalAlpha = 0.5;
 
       // Redraw with glow effect
       for (let x = 0; x <= width; x += gridSize) {
