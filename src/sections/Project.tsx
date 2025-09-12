@@ -2,12 +2,8 @@ import { motion } from "framer-motion";
 import { ProjectsScene } from "../motions/Projects";
 import { colors } from "../utils/Constants";
 import { textStyles } from "../utils/Typography";
-import {
-  staggerContainer,
-  staggerItem,
-  hoverScale,
-  hoverGlow,
-} from "../utils/Animations";
+import { hoverScale, hoverGlow } from "../utils/Animations";
+import SmoothScrollTransition from "../components/SmoothScrollTransition";
 import Section from "./Main";
 
 const ProjectSection = () => {
@@ -20,7 +16,11 @@ const ProjectSection = () => {
       decoration="right"
       disableScene
     >
-      <motion.div className="grid md:grid-cols-2 gap-8" {...staggerContainer}>
+      <SmoothScrollTransition
+        className="grid md:grid-cols-2 gap-8"
+        direction="fade"
+        delay={0.2}
+      >
         {[
           {
             title: "E-Commerce Platform",
@@ -50,59 +50,64 @@ const ProjectSection = () => {
             tech: ["Python", "FastAPI", "React", "TensorFlow"],
             status: "Completed",
           },
-        ].map((project) => (
-          <motion.div
+        ].map((project, index) => (
+          <SmoothScrollTransition
             key={project.title}
-            className="p-6 rounded-lg backdrop-blur-sm shadow-sm"
-            style={{
-              backgroundColor: "rgba(26, 35, 50, 0.3)",
-              border: `1px solid ${colors.cyberpunk_grid}`,
-            }}
-            {...staggerItem}
-            {...hoverScale}
-            {...hoverGlow}
+            direction="up"
+            delay={0.4 + index * 0.2}
+            threshold={0.1}
           >
-            <div className="flex justify-between items-start mb-3">
-              <h3 style={textStyles.h4}>{project.title}</h3>
-              <span
-                className="px-2 py-1 rounded text-xs"
-                style={{
-                  backgroundColor:
-                    project.status === "Completed"
-                      ? "rgba(0, 191, 255, 0.2)"
-                      : "rgba(255, 128, 0, 0.2)",
-                  color:
-                    project.status === "Completed"
-                      ? colors.cyberpunk_cyan
-                      : colors.cyberpunk_accent,
-                  fontFamily: "monospace",
-                }}
-              >
-                {project.status}
-              </span>
-            </div>
-            <p style={textStyles.body} className="mb-4">
-              {project.description}
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((tech, techIndex) => (
+            <motion.div
+              className="p-6 rounded-lg backdrop-blur-sm shadow-sm"
+              style={{
+                backgroundColor: "rgba(26, 35, 50, 0.3)",
+                border: `1px solid ${colors.cyberpunk_grid}`,
+              }}
+              {...hoverScale}
+              {...hoverGlow}
+            >
+              <div className="flex justify-between items-start mb-3">
+                <h3 style={textStyles.h4}>{project.title}</h3>
                 <span
-                  key={techIndex}
-                  className="px-3 py-1 rounded-full text-sm"
+                  className="px-2 py-1 rounded text-xs"
                   style={{
-                    backgroundColor: "rgba(0, 191, 255, 0.1)",
-                    color: colors.cyberpunk_cyan,
-                    border: `1px solid ${colors.cyberpunk_grid}`,
+                    backgroundColor:
+                      project.status === "Completed"
+                        ? "rgba(0, 191, 255, 0.2)"
+                        : "rgba(255, 128, 0, 0.2)",
+                    color:
+                      project.status === "Completed"
+                        ? colors.cyberpunk_cyan
+                        : colors.cyberpunk_accent,
                     fontFamily: "monospace",
                   }}
                 >
-                  {tech}
+                  {project.status}
                 </span>
-              ))}
-            </div>
-          </motion.div>
+              </div>
+              <p style={textStyles.body} className="mb-4">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((tech, techIndex) => (
+                  <span
+                    key={techIndex}
+                    className="px-3 py-1 rounded-full text-sm"
+                    style={{
+                      backgroundColor: "rgba(0, 191, 255, 0.1)",
+                      color: colors.cyberpunk_cyan,
+                      border: `1px solid ${colors.cyberpunk_grid}`,
+                      fontFamily: "monospace",
+                    }}
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </SmoothScrollTransition>
         ))}
-      </motion.div>
+      </SmoothScrollTransition>
     </Section>
   );
 };

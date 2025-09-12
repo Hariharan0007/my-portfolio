@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { textStyles } from "../utils/Typography";
+import TypingEffect from "../components/TypingEffect";
+import SmoothScrollTransition from "../components/SmoothScrollTransition";
 
 type SectionProps = {
   title: string;
@@ -25,22 +27,19 @@ const Section = ({
   disableScene = false,
 }: SectionProps) => {
   const { ref, inView } = useInView({
-    threshold: 0.7,
+    threshold: 0.3,
     triggerOnce: false,
   });
 
+  const [showTyping, setShowTyping] = useState(false);
+
   useEffect(() => {
     if (inView) {
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-          inline: "center",
-        });
-      }
+      setShowTyping(true);
+    } else {
+      setShowTyping(false);
     }
-  }, [inView, id]);
+  }, [inView]);
 
   const getDecoration = () => {
     switch (decoration) {
@@ -68,29 +67,41 @@ const Section = ({
     <motion.section
       ref={ref}
       id={id}
-      className={`min-h-screen flex items-center justify-center p-8 relative ${bgColor} overflow-hidden w-full
-      `}
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
-      transition={{ duration: 0.8 }}
+      className={`min-h-screen flex items-center justify-center p-8 relative ${bgColor} overflow-hidden w-full`}
     >
       {getDecoration()}
       {!disableScene && (
         <div className="absolute inset-0 z-0 opacity-30">{scene}</div>
       )}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+      <SmoothScrollTransition
         className={`${
           fullWidth ? "max-w-full" : "max-w-4xl"
         } mx-auto text-center relative z-10`}
+        direction="fade"
+        threshold={0.2}
+        triggerOnce={false}
       >
-        <h2 className="mb-8" style={textStyles.h2}>
-          {title}
-        </h2>
-        {children}
-      </motion.div>
+        <div className="mb-16">
+          {showTyping ? (
+            <TypingEffect
+              text={title}
+              speed={80}
+              delay={0}
+              style={textStyles.h2}
+            />
+          ) : (
+            <h2 style={textStyles.h2}>{title}</h2>
+          )}
+        </div>
+        <SmoothScrollTransition
+          direction="up"
+          delay={0.3}
+          threshold={0.1}
+          className="mt-8"
+        >
+          {children}
+        </SmoothScrollTransition>
+      </SmoothScrollTransition>
     </motion.section>
   );
 };

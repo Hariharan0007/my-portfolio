@@ -30,6 +30,7 @@ import { SkillsScene } from "../motions/Skills";
 import { colors } from "../utils/Constants";
 import { textStyles } from "../utils/Typography";
 import { hoverScale, hoverGlow } from "../utils/Animations";
+import SmoothScrollTransition from "../components/SmoothScrollTransition";
 import Section from "./Main";
 
 type IconProps = {
@@ -70,24 +71,30 @@ const skills: Skill[] = [
   { name: "REST API", icon: <TbApi size={32} /> },
 ];
 
-const SkillCard = ({ skill }: { skill: Skill }) => (
-  <motion.div
-    className="p-6 rounded-lg backdrop-blur-sm shadow-md flex-shrink-0 flex flex-col items-center justify-center gap-3 w-52 h-40"
-    style={{
-      backgroundColor: "rgba(26, 35, 50, 0.3)",
-      border: `1px solid ${colors.cyberpunk_grid}`,
-    }}
-    {...hoverScale}
-    {...hoverGlow}
+const SkillCard = ({ skill, index }: { skill: Skill; index: number }) => (
+  <SmoothScrollTransition
+    direction="up"
+    delay={0.2 + index * 0.1}
+    threshold={0.1}
   >
-    {React.cloneElement(skill.icon, {
-      size: 48,
-      color: skill.color || skill.icon.props.color,
-    })}
-    <p style={textStyles.body} className="text-center">
-      {skill.name}
-    </p>
-  </motion.div>
+    <motion.div
+      className="p-6 rounded-lg backdrop-blur-sm shadow-md flex-shrink-0 flex flex-col items-center justify-center gap-3 w-52 h-40"
+      style={{
+        backgroundColor: "rgba(26, 35, 50, 0.3)",
+        border: `1px solid ${colors.cyberpunk_grid}`,
+      }}
+      {...hoverScale}
+      {...hoverGlow}
+    >
+      {React.cloneElement(skill.icon, {
+        size: 48,
+        color: skill.color || skill.icon.props.color,
+      })}
+      <p style={textStyles.body} className="text-center">
+        {skill.name}
+      </p>
+    </motion.div>
+  </SmoothScrollTransition>
 );
 
 const MarqueeRow = ({
@@ -112,7 +119,7 @@ const MarqueeRow = ({
       }}
     >
       {[...skills, ...skills].map((skill, index) => (
-        <SkillCard key={`${skill.name}-${index}`} skill={skill} />
+        <SkillCard key={`${skill.name}-${index}`} skill={skill} index={index} />
       ))}
     </motion.div>
   );
