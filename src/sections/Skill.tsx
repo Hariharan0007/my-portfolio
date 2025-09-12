@@ -28,6 +28,8 @@ import { TbBrandNextjs, TbApi } from "react-icons/tb";
 import { VscTerminalCmd } from "react-icons/vsc";
 import { SkillsScene } from "../motions/Skills";
 import { colors } from "../utils/Constants";
+import { textStyles } from "../utils/Typography";
+import { hoverScale, hoverGlow } from "../utils/Animations";
 import Section from "./Main";
 
 type IconProps = {
@@ -69,18 +71,23 @@ const skills: Skill[] = [
 ];
 
 const SkillCard = ({ skill }: { skill: Skill }) => (
-  <div className="p-6 rounded-lg bg-white/50 backdrop-blur-sm shadow-md flex-shrink-0 flex flex-col items-center justify-center gap-3 w-52 h-40 hover:scale-105 transition-all duration-300">
+  <motion.div
+    className="p-6 rounded-lg backdrop-blur-sm shadow-md flex-shrink-0 flex flex-col items-center justify-center gap-3 w-52 h-40"
+    style={{
+      backgroundColor: "rgba(26, 35, 50, 0.3)",
+      border: `1px solid ${colors.cyberpunk_grid}`,
+    }}
+    {...hoverScale}
+    {...hoverGlow}
+  >
     {React.cloneElement(skill.icon, {
       size: 48,
       color: skill.color || skill.icon.props.color,
     })}
-    <p
-      className="text-center font-medium text-secondary"
-      style={{ fontFamily: "monospace" }}
-    >
+    <p style={textStyles.body} className="text-center">
       {skill.name}
     </p>
-  </div>
+  </motion.div>
 );
 
 const MarqueeRow = ({

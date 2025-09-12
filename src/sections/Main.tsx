@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import { textStyles } from "../utils/Typography";
 
 type SectionProps = {
   title: string;
@@ -85,7 +86,7 @@ const Section = ({
           fullWidth ? "max-w-full" : "max-w-4xl"
         } mx-auto text-center relative z-10`}
       >
-        <h2 className="text-4xl font-bold mb-8 text-secondary space-x-2 tracking-widest">
+        <h2 className="mb-8" style={textStyles.h2}>
           {title}
         </h2>
         {children}

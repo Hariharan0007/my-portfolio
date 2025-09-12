@@ -2,6 +2,7 @@ import { useScroll, useTransform } from "framer-motion";
 import { colors } from "./utils/Constants";
 import { useEffect } from "react";
 import CursorTrail from "./utils/CursorTrail";
+import CyberpunkGrid from "./components/CyberpunkGrid";
 import HeroSection from "./sections/Hero";
 import AboutSection from "./sections/About";
 import SkillSection from "./sections/Skill";
@@ -26,18 +27,21 @@ function App() {
   return (
     <div
       className="relative w-full min-h-screen"
-      style={{ backgroundColor: colors.primary }}
+      style={{ backgroundColor: colors.cyberpunk_primary }}
     >
+      <CyberpunkGrid />
       <CursorTrail />
-      <HeroSection opacity={opacity} />
-      <AboutSection />
-      <SkillSection />
-      <ProjectSection />
-      <ExperienceSection />
-      <EducationSection />
-      <CertificateSection />
-      <AwardsSection />
-      <ContactSection />
+      <div className="relative z-10">
+        <HeroSection opacity={opacity} />
+        <AboutSection />
+        <SkillSection />
+        <ProjectSection />
+        <ExperienceSection />
+        <EducationSection />
+        <CertificateSection />
+        <AwardsSection />
+        <ContactSection />
+      </div>
     </div>
   );
 }
