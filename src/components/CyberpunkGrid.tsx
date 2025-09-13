@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { colors } from "../utils/Constants";
 
 interface CyberpunkGridProps {
@@ -8,7 +8,8 @@ interface CyberpunkGridProps {
 const CyberpunkGrid: React.FC<CyberpunkGridProps> = ({ className = "" }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
-  const gradientPosition = useRef<number>(0);
+  const timeRef = useRef<number>(0);
+  const [enableXAxisGlow, setEnableXAxisGlow] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -25,43 +26,30 @@ const CyberpunkGrid: React.FC<CyberpunkGridProps> = ({ className = "" }) => {
     const drawGrid = () => {
       if (!ctx) return;
 
-      const gridSize = 60; // Increased gaps between grid lines
+      const gridSize = 60;
       const width = canvas.width;
       const height = canvas.height;
 
       // Clear canvas
       ctx.clearRect(0, 0, width, height);
 
-      // Create gradient for the grid lines with white gradient animation
-      const gradient = ctx.createLinearGradient(0, 0, 0, height);
-      gradient.addColorStop(0, "#ffffff");
-      gradient.addColorStop(0.2, "#e6f3ff");
-      gradient.addColorStop(0.4, "#b3d9ff");
-      gradient.addColorStop(0.6, "#80c7ff");
-      gradient.addColorStop(0.8, "#4db3ff");
-      gradient.addColorStop(1, "#1a9fff");
+      // Calculate breathing animation position (0 to 1, top to bottom)
+      const breathingProgress = (timeRef.current * 0.001) % 1; // 0 to 1, loops continuously (much slower)
+      const breathingY = breathingProgress * height;
 
-      // Apply gradient offset for animation
-      const gradientOffset = (gradientPosition.current * 0.003) % 1;
-      const animatedGradient = ctx.createLinearGradient(
-        0,
-        gradientOffset * height,
-        0,
-        height + gradientOffset * height
-      );
-      animatedGradient.addColorStop(0, "#ffffff");
-      animatedGradient.addColorStop(0.2, "#e6f3ff");
-      animatedGradient.addColorStop(0.4, "#b3d9ff");
-      animatedGradient.addColorStop(0.6, "#80c7ff");
-      animatedGradient.addColorStop(0.8, "#4db3ff");
-      animatedGradient.addColorStop(1, "#1a9fff");
+      // Calculate breathing intensity (0 to 1) - smoother pulsing
+      const breathingIntensity = Math.sin(timeRef.current * 0.002) * 0.5 + 0.5; // 0 to 1
 
-      ctx.strokeStyle = animatedGradient;
-      ctx.lineWidth = 0.5;
-      ctx.globalAlpha = 0.6;
+      // Base blue color
+      const baseBlue = colors.cyberpunk_grid;
 
-      // Draw vertical lines
+      // Draw vertical lines (no glow effect)
       for (let x = 0; x <= width; x += gridSize) {
+        ctx.strokeStyle = baseBlue;
+        ctx.lineWidth = 0.5;
+        ctx.globalAlpha = 0.4;
+        ctx.shadowBlur = 0;
+
         ctx.beginPath();
         ctx.moveTo(x, 0);
         ctx.lineTo(x, height);
@@ -70,26 +58,23 @@ const CyberpunkGrid: React.FC<CyberpunkGridProps> = ({ className = "" }) => {
 
       // Draw horizontal lines
       for (let y = 0; y <= height; y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-        ctx.stroke();
-      }
+        // Calculate if this line should be shining based on breathing position
+        const shouldShine =
+          enableXAxisGlow && Math.abs(y - breathingY) < height * 0.05; // Shine near breathing position
 
-      // Add enhanced glowing effect to the grid
-      ctx.shadowColor = "#ffffff";
-      ctx.shadowBlur = 4;
-      ctx.globalAlpha = 0.5;
+        // Set line properties
+        ctx.strokeStyle = baseBlue;
+        ctx.lineWidth = shouldShine ? 1.5 : 0.5;
+        ctx.globalAlpha = shouldShine ? 0.9 : 0.4;
 
-      // Redraw with glow effect
-      for (let x = 0; x <= width; x += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-        ctx.stroke();
-      }
+        // Add glow effect for shining lines (only if enabled)
+        if (shouldShine) {
+          ctx.shadowColor = baseBlue;
+          ctx.shadowBlur = 8;
+        } else {
+          ctx.shadowBlur = 0;
+        }
 
-      for (let y = 0; y <= height; y += gridSize) {
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(width, y);
@@ -102,7 +87,7 @@ const CyberpunkGrid: React.FC<CyberpunkGridProps> = ({ className = "" }) => {
     };
 
     const animate = () => {
-      gradientPosition.current += 1;
+      timeRef.current += 1;
       drawGrid();
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -118,7 +103,7 @@ const CyberpunkGrid: React.FC<CyberpunkGridProps> = ({ className = "" }) => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, []);
+  }, [enableXAxisGlow]);
 
   return (
     <canvas
