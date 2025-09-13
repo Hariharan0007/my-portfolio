@@ -23,16 +23,19 @@ const ExperienceSection = () => {
       <motion.div className="space-y-8" {...staggerContainer}>
         {[
           {
-            role: "Senior Full Stack Developer",
-            company: "Tech Innovations Inc.",
-            period: "2022 - Present",
+            role: "Full Stack Developer",
+            company: "5C Network",
+            period: "2023 - Present",
             description:
               "Leading the development of innovative web applications and mentoring junior developers. Spearheaded the migration of legacy systems to modern React and Node.js architecture.",
             achievements: [
-              "Led a team of 5 developers in building a real-time collaboration platform",
+              "Proficient in building responsive front-end interfaces with React.js, Next.js, and Vite.js.",
+              "Experienced in developing high-performance back-end systems using Node.js, NestJS, and Express.",
+              "Skilled in managing both relational (PostgreSQL) and non-relational databases (MongoDB, Redis) for optimized data solutions.",
+              "Expertise in RESTful API development, integration, and performance tuning.",
+              "Strong troubleshooting, debugging, and performance optimization skills to improve application efficiency.",
+              "Collaborative team player with experience in Agile/Scrum environments, ensuring timely and quality software delivery.",
               "Improved application performance by 40% through code optimization",
-              "Implemented CI/CD pipelines reducing deployment time by 60%",
-              "Mentored 3 junior developers who successfully transitioned to mid-level roles",
             ],
             tech: [
               "React",
@@ -42,34 +45,6 @@ const ExperienceSection = () => {
               "Docker",
               "MongoDB",
             ],
-          },
-          {
-            role: "Frontend Developer",
-            company: "Digital Solutions Ltd.",
-            period: "2020 - 2022",
-            description:
-              "Developed and maintained multiple client-facing applications using modern web technologies. Collaborated with design teams to create responsive and accessible user interfaces.",
-            achievements: [
-              "Built 15+ responsive web applications for various clients",
-              "Implemented accessibility standards improving user experience for 10,000+ users",
-              "Reduced page load times by 35% through performance optimization",
-              "Collaborated with UX designers to create intuitive user interfaces",
-            ],
-            tech: ["React", "JavaScript", "CSS3", "SASS", "Webpack", "Git"],
-          },
-          {
-            role: "Junior Developer",
-            company: "StartupXYZ",
-            period: "2019 - 2020",
-            description:
-              "Started my professional journey as a junior developer, working on various web development projects and learning modern development practices.",
-            achievements: [
-              "Developed 8+ small to medium web applications",
-              "Learned modern JavaScript frameworks and libraries",
-              "Contributed to open-source projects",
-              "Gained experience in agile development methodologies",
-            ],
-            tech: ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap", "PHP"],
           },
         ].map((exp) => (
           <motion.div

@@ -34,7 +34,7 @@ const EducationSection = () => {
               "Participated in multiple hackathons",
               "Specialized in Web Development",
               "Pet Project: Seminar Hall Booking System",
-              "Final Year Project: AI-Powered Learning Management System",
+              "Final Year Project: ML - Location Based Crop Recommendation System",
             ],
             relevantCourses: [
               "Data Structures and Algorithms",

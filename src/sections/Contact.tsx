@@ -50,7 +50,7 @@ const ContactSection = () => {
                   Email
                 </h4>
                 <p style={textStyles.body} className="text-sm">
-                  hariharan.dev@example.com
+                  hariharanp@myyahoo.com
                 </p>
               </div>
               <div>
@@ -58,7 +58,7 @@ const ContactSection = () => {
                   Phone
                 </h4>
                 <p style={textStyles.body} className="text-sm">
-                  +91 98765 43210
+                  +91 93455 44942
                 </p>
               </div>
               <div>
@@ -66,7 +66,7 @@ const ContactSection = () => {
                   Location
                 </h4>
                 <p style={textStyles.body} className="text-sm">
-                  Chennai, Tamil Nadu, India
+                  Tiruppur, Tamil Nadu, IN
                 </p>
               </div>
             </div>
@@ -90,7 +90,7 @@ const ContactSection = () => {
                   LinkedIn
                 </h4>
                 <p style={textStyles.body} className="text-sm">
-                  linkedin.com/in/hariharan-dev
+                  linkedin.com/in/hariharanprogrammer
                 </p>
               </div>
               <div>
@@ -98,7 +98,7 @@ const ContactSection = () => {
                   GitHub
                 </h4>
                 <p style={textStyles.body} className="text-sm">
-                  github.com/hariharan-dev
+                  github.com/hariharan0007
                 </p>
               </div>
               <div>
@@ -106,7 +106,7 @@ const ContactSection = () => {
                   Twitter
                 </h4>
                 <p style={textStyles.body} className="text-sm">
-                  @hariharan_dev
+                  -
                 </p>
               </div>
             </div>
@@ -120,15 +120,18 @@ const ContactSection = () => {
           <CyberpunkButton
             variant="primary"
             onClick={() =>
-              window.open("mailto:hariharan.dev@example.com", "_blank")
+              window.open("mailto:hariharanp@myyahoo.com", "_blank")
             }
           >
-            Send Email
+            Hire Me
           </CyberpunkButton>
           <CyberpunkButton
             variant="secondary"
             onClick={() =>
-              window.open("https://linkedin.com/in/hariharan-dev", "_blank")
+              window.open(
+                "https://linkedin.com/in/hariharanprogrammer",
+                "_blank"
+              )
             }
           >
             LinkedIn
@@ -136,7 +139,7 @@ const ContactSection = () => {
           <CyberpunkButton
             variant="accent"
             onClick={() =>
-              window.open("https://github.com/hariharan-dev", "_blank")
+              window.open("https://github.com/hariharan0007", "_blank")
             }
           >
             GitHub
