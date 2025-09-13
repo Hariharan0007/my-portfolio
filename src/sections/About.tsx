@@ -108,29 +108,37 @@ const AboutSection = () => {
           <div className="grid md:grid-cols-2 gap-4">
             <SmoothScrollTransition direction="left" delay={1.0}>
               <motion.div
-                className="p-4 rounded-lg h-48 flex flex-col"
+                className="p-3 md:p-4 rounded-lg min-h-[200px] md:h-48 flex flex-col"
                 style={{
                   backgroundColor: "rgba(0, 191, 255, 0.1)",
                   border: `1px solid ${colors.cyberpunk_grid}`,
                 }}
                 whileHover={{ scale: 1.02 }}
               >
-                <h4 style={textStyles.accent} className="mb-2">
+                <h4
+                  style={textStyles.accent}
+                  className="mb-2 text-md md:text-base"
+                >
                   Frontend Development
                 </h4>
                 <ul
                   style={textStyles.body}
-                  className="list-disc list-inside space-y-1 text-left flex-grow"
+                  className="list-disc list-inside space-y-1 text-left flex-grow overflow-hidden"
                 >
                   {frontendPoints.slice(0, 2).map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li
+                      key={index}
+                      className="text-sm md:text-base leading-tight"
+                    >
+                      {item}
+                    </li>
                   ))}
                 </ul>
                 <button
                   onClick={() =>
                     openModal("Frontend Development", frontendPoints)
                   }
-                  className="mt-3 text-cyan-400 hover:text-cyan-300 transition-colors duration-200 text-sm font-medium"
+                  className="mt-2 text-cyan-400 hover:text-cyan-300 transition-colors duration-200 text-xs font-medium py-1 px-2 bg-cyan-500/10 rounded"
                 >
                   View More →
                 </button>
@@ -139,29 +147,37 @@ const AboutSection = () => {
 
             <SmoothScrollTransition direction="right" delay={1.2}>
               <motion.div
-                className="p-4 rounded-lg h-48 flex flex-col"
+                className="p-3 md:p-4 rounded-lg min-h-[200px] md:h-48 flex flex-col"
                 style={{
                   backgroundColor: "rgba(0, 191, 255, 0.1)",
                   border: `1px solid ${colors.cyberpunk_grid}`,
                 }}
                 whileHover={{ scale: 1.02 }}
               >
-                <h4 style={textStyles.accent} className="mb-2">
+                <h4
+                  style={textStyles.accent}
+                  className="mb-2 text-md md:text-base"
+                >
                   Backend Development
                 </h4>
                 <ul
                   style={textStyles.body}
-                  className="list-disc list-inside space-y-1 text-left flex-grow"
+                  className="list-disc list-inside space-y-1 text-left flex-grow overflow-hidden"
                 >
                   {backendPoints.slice(0, 2).map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li
+                      key={index}
+                      className="text-sm md:text-base leading-tight"
+                    >
+                      {item}
+                    </li>
                   ))}
                 </ul>
                 <button
                   onClick={() =>
                     openModal("Backend Development", backendPoints)
                   }
-                  className="mt-3 text-cyan-400 hover:text-cyan-300 transition-colors duration-200 text-sm font-medium"
+                  className="mt-2 text-cyan-400 hover:text-cyan-300 transition-colors duration-200 text-xs font-medium py-1 px-2 bg-cyan-500/10 rounded"
                 >
                   View More →
                 </button>
@@ -171,29 +187,37 @@ const AboutSection = () => {
           <div className="grid md:grid-cols-2 gap-4 mt-4">
             <SmoothScrollTransition direction="left" delay={1.0}>
               <motion.div
-                className="p-4 rounded-lg h-48 flex flex-col"
+                className="p-3 md:p-4 rounded-lg min-h-[200px] md:h-48 flex flex-col"
                 style={{
                   backgroundColor: "rgba(0, 191, 255, 0.1)",
                   border: `1px solid ${colors.cyberpunk_grid}`,
                 }}
                 whileHover={{ scale: 1.02 }}
               >
-                <h4 style={textStyles.accent} className="mb-2">
+                <h4
+                  style={textStyles.accent}
+                  className="mb-2 text-md md:text-base"
+                >
                   Mobile Application Development
                 </h4>
                 <ul
                   style={textStyles.body}
-                  className="list-disc list-inside space-y-1 text-left flex-grow"
+                  className="list-disc list-inside space-y-1 text-left flex-grow overflow-hidden"
                 >
                   {mobileAppPoints.slice(0, 2).map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li
+                      key={index}
+                      className="text-sm md:text-base leading-tight"
+                    >
+                      {item}
+                    </li>
                   ))}
                 </ul>
                 <button
                   onClick={() =>
                     openModal("Mobile Application Development", mobileAppPoints)
                   }
-                  className="mt-3 text-cyan-400 hover:text-cyan-300 transition-colors duration-200 text-sm font-medium"
+                  className="mt-2 text-cyan-400 hover:text-cyan-300 transition-colors duration-200 text-xs font-medium py-1 px-2 bg-cyan-500/10 rounded"
                 >
                   View More →
                 </button>
@@ -202,29 +226,37 @@ const AboutSection = () => {
 
             <SmoothScrollTransition direction="right" delay={1.2}>
               <motion.div
-                className="p-4 rounded-lg h-48 flex flex-col"
+                className="p-3 md:p-4 rounded-lg min-h-[200px] md:h-48 flex flex-col"
                 style={{
                   backgroundColor: "rgba(0, 191, 255, 0.1)",
                   border: `1px solid ${colors.cyberpunk_grid}`,
                 }}
                 whileHover={{ scale: 1.02 }}
               >
-                <h4 style={textStyles.accent} className="mb-2">
+                <h4
+                  style={textStyles.accent}
+                  className="mb-2 text-md md:text-base"
+                >
                   Deployment and DevOps
                 </h4>
                 <ul
                   style={textStyles.body}
-                  className="list-disc list-inside space-y-1 text-left flex-grow"
+                  className="list-disc list-inside space-y-1 text-left flex-grow overflow-hidden"
                 >
                   {deploymentPoints.slice(0, 2).map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li
+                      key={index}
+                      className="text-sm md:text-base leading-tight"
+                    >
+                      {item}
+                    </li>
                   ))}
                 </ul>
                 <button
                   onClick={() =>
                     openModal("Deployment and DevOps", deploymentPoints)
                   }
-                  className="mt-3 text-cyan-400 hover:text-cyan-300 transition-colors duration-200 text-sm font-medium"
+                  className="mt-2 text-cyan-400 hover:text-cyan-300 transition-colors duration-200 text-xs font-medium py-1 px-2 bg-cyan-500/10 rounded"
                 >
                   View More →
                 </button>
@@ -241,25 +273,28 @@ const AboutSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4"
             onClick={closeModal}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-gradient-to-br from-[#0a0a0a] to-[#1a1a2e] border border-cyan-500/30 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-hidden"
+              className="bg-gradient-to-br from-[#0a0a0a] to-[#1a1a2e] border border-cyan-500/30 rounded-lg max-w-lg w-full max-h-[95vh] md:max-h-[80vh] overflow-hidden mx-1"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
-              <div className="p-6 border-b border-cyan-500/20">
+              <div className="p-2 md:p-6 border-b border-cyan-500/20">
                 <div className="flex justify-between items-center">
-                  <h3 style={textStyles.h3} className="text-cyan-400">
+                  <p
+                    style={textStyles.accent}
+                    className="text-cyan-400 text-sm md:text-lg"
+                  >
                     {modalContent.title}
-                  </h3>
+                  </p>
                   <button
                     onClick={closeModal}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-2xl"
+                    className="text-gray-400 hover:text-white transition-colors duration-200 text-2xl md:text-3xl font-bold bg-gray-800/50 hover:bg-gray-700/50 rounded-full w-8 h-8 flex items-center justify-center"
                   >
                     ×
                   </button>
@@ -267,13 +302,16 @@ const AboutSection = () => {
               </div>
 
               {/* Modal Content */}
-              <div className="p-6 overflow-y-auto max-h-[60vh]">
+              <div className="p-3 md:p-6 overflow-y-auto max-h-[65vh]">
                 <ul
                   style={textStyles.body}
-                  className="list-disc list-inside space-y-3 text-left"
+                  className="list-disc list-inside space-y-1 md:space-y-2 text-left text-xs md:text-sm flex flex-col gap-3"
                 >
                   {modalContent.points.map((item, index) => (
-                    <li key={index} className="text-gray-300">
+                    <li
+                      key={index}
+                      className="text-gray-300 leading-tight text-xs md:text-sm"
+                    >
                       {item}
                     </li>
                   ))}
@@ -281,10 +319,10 @@ const AboutSection = () => {
               </div>
 
               {/* Modal Footer */}
-              <div className="p-6 border-t border-cyan-500/20">
+              <div className="p-3 md:p-6 border-t border-cyan-500/20">
                 <button
                   onClick={closeModal}
-                  className="w-full bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 py-2 px-4 rounded-lg transition-colors duration-200 font-medium"
+                  className="w-full bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 py-2 px-4 rounded-lg transition-colors duration-200 font-medium text-xs md:text-sm"
                 >
                   Close
                 </button>
