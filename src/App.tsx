@@ -3,6 +3,8 @@ import { colors } from "./utils/Constants";
 import { useEffect } from "react";
 import CursorTrail from "./utils/CursorTrail";
 import CyberpunkGrid from "./components/CyberpunkGrid";
+import ProgressBar from "./components/ProgressBar";
+import ScrollToTop from "./components/ScrollToTop";
 import HeroSection from "./sections/Hero";
 import AboutSection from "./sections/About";
 import SkillSection from "./sections/Skill";
@@ -24,6 +26,16 @@ function App() {
     document.documentElement.style.scrollBehavior = "smooth";
   }, []);
 
+  const handleNavigate = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <div
       className="relative w-full min-h-screen"
@@ -31,8 +43,10 @@ function App() {
     >
       <CyberpunkGrid />
       <CursorTrail />
+      <ProgressBar />
+      <ScrollToTop />
       <div className="relative z-10">
-        <HeroSection opacity={opacity} />
+        <HeroSection opacity={opacity} onNavigate={handleNavigate} />
         <AboutSection />
         <SkillSection />
         <ProjectSection />

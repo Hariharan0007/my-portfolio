@@ -4,13 +4,15 @@ import { textStyles, typography } from "../utils/Typography";
 import { fadeInUp, cyberpunkGlow } from "../utils/Animations";
 import TypingEffect from "../components/TypingEffect";
 import SkillIcons from "../components/SkillIcons";
+import Navigation from "../components/Navigation";
 import { useState, useEffect } from "react";
 
 interface HeroSectionProps {
   opacity: MotionValue<number>;
+  onNavigate?: (sectionId: string) => void;
 }
 
-const HeroSection = ({ opacity }: HeroSectionProps) => {
+const HeroSection = ({ opacity, onNavigate }: HeroSectionProps) => {
   const [showName, setShowName] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
   const [showScrollText, setShowScrollText] = useState(false);
@@ -49,6 +51,9 @@ const HeroSection = ({ opacity }: HeroSectionProps) => {
 
       {/* Skill Icons */}
       <SkillIcons />
+
+      {/* Navigation */}
+      {onNavigate && <Navigation onNavigate={onNavigate} />}
 
       <motion.div
         {...fadeInUp}
