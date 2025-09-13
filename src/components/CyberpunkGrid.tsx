@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { colors } from "../utils/Constants";
 
 interface CyberpunkGridProps {
@@ -9,7 +9,7 @@ const CyberpunkGrid: React.FC<CyberpunkGridProps> = ({ className = "" }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
   const timeRef = useRef<number>(0);
-  const [enableXAxisGlow, setEnableXAxisGlow] = useState(false);
+  const enableXAxisGlow = false;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -38,7 +38,7 @@ const CyberpunkGrid: React.FC<CyberpunkGridProps> = ({ className = "" }) => {
       const breathingY = breathingProgress * height;
 
       // Calculate breathing intensity (0 to 1) - smoother pulsing
-      const breathingIntensity = Math.sin(timeRef.current * 0.002) * 0.5 + 0.5; // 0 to 1
+      // const breathingIntensity = Math.sin(timeRef.current * 0.002) * 0.5 + 0.5; // 0 to 1
 
       // Base blue color
       const baseBlue = colors.cyberpunk_grid;

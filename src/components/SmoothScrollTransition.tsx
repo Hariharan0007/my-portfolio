@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 interface SmoothScrollTransitionProps {
@@ -15,6 +15,7 @@ const SmoothScrollTransition: React.FC<SmoothScrollTransitionProps> = ({
   children,
   className = "",
   threshold = 0.1,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   triggerOnce = true,
   direction = "up",
   delay = 0,
@@ -22,8 +23,7 @@ const SmoothScrollTransition: React.FC<SmoothScrollTransitionProps> = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, {
-    threshold,
-    triggerOnce,
+    amount: threshold,
     margin: "-100px 0px",
   });
 

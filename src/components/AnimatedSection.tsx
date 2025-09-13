@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { textStyles, typography } from "../utils/Typography";
+import { textStyles } from "../utils/Typography";
 import { colors } from "../utils/Constants";
 import {
   scrollReveal,
